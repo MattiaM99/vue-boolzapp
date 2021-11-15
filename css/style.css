@@ -1,0 +1,188 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  position: absolute;
+  top: 2vh;
+  left: 10%;
+  width: 80%;
+  height: 90vh;
+}
+
+/* PARTE SINISTRA */
+input:focus {
+  outline:none;
+}
+
+input {
+  border: none;
+  border-radius: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+body, input {
+  font-family: Helvetica
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+.round-img img {   
+  border-radius: 50%;
+}
+
+i:hover {
+  cursor: pointer;
+}
+
+.background {
+  height: 100vh;
+}
+
+.top-bcg {
+  height: 125px;
+  background-color: #00A093;
+}
+
+.bottom-bcg {
+  background-color: #DCE0DB;
+  height: calc(100vh - 125px);
+}
+
+.list-user {
+  width: 35%;
+  overflow: hidden;
+}
+
+.img-profile-options {
+  height: 70px;
+  background-color: #EDEDED;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.img-profile {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.img-profile img {
+  width: 60px;
+}
+
+.img-profile h4{
+  padding-left: 10px;
+}
+
+.right-icons i {
+  font-size: 25px;
+  color: #BABABA;
+  padding: 0 10px;
+}
+
+.notifications {
+  display: flex;
+  align-items: center;
+  height: 90px;
+  background-color: #99DFFC;
+  padding-left: 15px;
+}
+
+.bell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.notifications i {
+  font-size: 22px;
+  color: #99DFFC;
+  padding: 15px;
+}
+
+.notif-text {
+  padding-left: 15px;
+}
+
+.notif-text p {
+  padding-top: 3px;
+  text-decoration: underline;
+  color: #6794A8;
+  font-weight: 600;
+}
+
+.notif-text p:hover {
+  cursor: pointer;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  padding: 7px;
+  background-color: #FBFBFB;
+  height: 50px;
+}
+
+.search-bar i {
+  color: #BEC1C3;
+  font-size: 16px;
+  padding-left: 5px;
+  padding-right: 12px;
+}
+
+.search-bar input {
+  font-family: Helvetica;
+  padding: 7px 5px 7px 15px;
+  width: 100%;
+}
+
+/* ALTEZZA CALCOLATA TOGLIENDO TUTTI GLI ELEMENTI CHE COMPONGONO LA PARTE SINISTRA */
+.recent-chat {
+  background-color: #FFFFFF;
+  height: calc(100vh - 210px);
+  overflow: auto;
+}
+
+.user{
+  cursor: pointer;
+  background-color: #fff;
+  width: 98%;
+  display: flex;
+  align-items: center;
+}
+
+.user-active{
+  cursor: pointer;
+  background-color: #EAEBEB ;
+  width: 98%;
+  display: flex;
+  align-items: center;
+}
+
+
+.name-recent-user p{
+  color: #BEC1C3;
+  padding-top: 5px;
+}
+/* fine stile parte sinistra*/
+
+
