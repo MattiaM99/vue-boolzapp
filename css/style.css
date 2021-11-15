@@ -32,7 +32,7 @@ body, input {
 }
 
 h4 {
-  font-size: 16px;
+  font-size: 15px;
 }
 
 h3 {
@@ -51,12 +51,12 @@ i:hover {
   height: 100vh;
 }
 
-.top-bcg {
+.top-bg {
   height: 125px;
   background-color: #00A093;
 }
 
-.bottom-bcg {
+.bottom-bg {
   background-color: #DCE0DB;
   height: calc(100vh - 125px);
 }
@@ -64,6 +64,10 @@ i:hover {
 .list-user {
   width: 35%;
   overflow: hidden;
+}
+
+img{
+  cursor: pointer;
 }
 
 .img-profile-options {
@@ -178,11 +182,129 @@ i:hover {
   align-items: center;
 }
 
-
-.name-recent-user p{
+.recent-user p{
   color: #BEC1C3;
   padding-top: 5px;
 }
 /* fine stile parte sinistra*/
 
+/* inizio parte destra */
 
+.chat {
+  position: relative;
+  width: 65%;
+  background-image: url('../img/mine.jpg'); 
+}
+
+.img-active{
+  display: flex;
+  align-items: center;
+}
+
+.top-user-chat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  background-color: #EDEDED;
+  padding-right: 15px;
+  border-left: 1px solid lightgray;
+}
+
+.bold p {
+  font-weight: 700;
+  color: #878E91;
+}
+
+.container-chat {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 150px);
+  padding: 50px 100px 0 100px;
+  overflow: auto;
+}
+
+.message {
+  display: flex;
+  position: relative;
+  padding: 20px 15px;
+  margin-bottom: 15px;
+}
+
+.sent {
+  background-color: #DAFAC2;
+  align-self: flex-end;
+  border-radius: 12px 12px 0px 12px;
+}
+
+.received {
+  background-color: white;
+  align-self: flex-start;
+  border-radius: 12px 12px 12px 0px;
+}
+
+.bottom-chat {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  height: 80px;
+  background-color: #F4F0ED;
+  width: 100%;
+}
+
+.fa-smile, .fa-microphone {
+  color: #767E81;
+  font-size: 30px;
+  padding: 15px;
+}
+
+.bottom-chat input {
+  width: 85%;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+#msg{
+  border-radius: 15px;
+}
+
+@media screen and (max-width: 1000px) {
+
+  .list-user .right-icons{
+    display: none;
+  }
+
+  .container-chat{
+    padding: 50px;
+  }
+}
+
+@media screen and (max-width: 739px) {
+
+  .right-icons{
+    display: none;
+  }
+
+  .notifications{
+    justify-content: center;
+  }
+
+  .notif-text{
+    display: none;
+  }
+
+  .name-recent-user h3{
+    font-size: 80%;
+  }
+
+  .name-recent-user p{
+    font-size: 60%;
+  }
+
+  .message p{
+    font-size: 80%;
+  }
+}
