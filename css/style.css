@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+.container-app{
+  min-width: 85%;
+  height: 100%;
+}
+
 .container {
   display: flex;
   position: absolute;
@@ -11,6 +16,12 @@
   left: 10%;
   width: 80%;
   height: 90vh;
+}
+
+.clearfix::after{
+  content: '';
+  display: table;
+  clear: both;
 }
 
 /* PARTE SINISTRA */
@@ -224,23 +235,24 @@ img{
   overflow: auto;
 }
 
-.message {
-  display: flex;
+.inviato{
   position: relative;
   padding: 20px 15px;
   margin-bottom: 15px;
-}
-
-.sent {
   background-color: #DAFAC2;
-  align-self: flex-end;
+  float: right;
   border-radius: 12px 12px 0px 12px;
+  max-width: 350px;
 }
 
-.received {
+.ricevuto{
+  position: relative;
+  padding: 20px 15px;
+  margin-bottom: 15px;
   background-color: white;
-  align-self: flex-start;
+  float: left;
   border-radius: 12px 12px 12px 0px;
+  max-width: 350px;
 }
 
 .bottom-chat {

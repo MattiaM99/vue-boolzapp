@@ -9,127 +9,90 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-<!-- SFONDO -->
-  <div class="background">         
-    <div class="top-bg"></div>
-    <div class="bottom-bg"></div>
-</div>
-<!-- CONTAINER APP -->
-<div class="container">            
-  <div class="list-user">       
-    <div class="img-profile-options round-img">         
-        <div class="img-profile">
-            <img src="img/avatar_io.jpg">
-            <h4>Nome Utente</h4>
-        </div>
-        <div class="right-icons">
-            <i class="fas fa-circle-notch"></i>
-            <i class="fas fa-comment-alt"></i>
-            <i class="fas fa-ellipsis-v"></i>
-        </div>
+  <div id="app" class="container-app">
+      
+    <!-- SFONDO -->
+      <div class="background">         
+        <div class="top-bg"></div>
+        <div class="bottom-bg"></div>
     </div>
-    <!-- SEZIONE ATTIVA NOTIFICHE -->
-    <div class="notifications">   
-        <div class="bell">
-            <i class="fas fa-bell-slash"></i>
+    <!-- CONTAINER APP -->
+    <div class="container">            
+      <div class="list-user">       
+        <div class="img-profile-options round-img">         
+            <div class="img-profile">
+                <img src="img/avatar_io.jpg">
+                <h4>Nome Utente</h4>
+            </div>
+            <div class="right-icons">
+                <i class="fas fa-circle-notch"></i>
+                <i class="fas fa-comment-alt"></i>
+                <i class="fas fa-ellipsis-v"></i>
+            </div>
         </div>
-        <div class="notif-text">
-            <h4>Ricevi notifiche di nuovi messaggi</h4>
-            <p>Attiva notifiche desktop</p>
+        <!-- SEZIONE ATTIVA NOTIFICHE -->
+        <div class="notifications">   
+            <div class="bell">
+                <i class="fas fa-bell-slash"></i>
+            </div>
+            <div class="notif-text">
+                <h4>Ricevi notifiche di nuovi messaggi</h4>
+                <p>Attiva notifiche desktop</p>
+            </div>
         </div>
-    </div>
-    <!-- SEZIONE BARRA RICERCA CHAT -->
-    <div class="search-bar">   
-        <i class="fas fa-search"></i>
-        <input id="search-bar" type="text" placeholder="Cerca o inizia una nuova chat">
-    </div>
-    <!-- SEZIONE CHAT RECENTI -->
-    <div class="recent-chat">           
-      <div class="user-active">            
-        <div class="img-profile round-img">
-            <img src="img/avatar_1.jpg">
+        <!-- SEZIONE BARRA RICERCA CHAT -->
+        <div class="search-bar">   
+            <i class="fas fa-search"></i>
+            <input id="search-bar" type="text" placeholder="Cerca o inizia una nuova chat">
         </div>
-        <div class="name-recent-user bold">
-          <h3>Michele</h3>
-          <p>Lorem ipsum dolor sit</p>
-        </div> 
-      </div>
-      <div class="user">          
-        <div class="img-profile round-img">
-            <img src="img/avatar_2.jpg">
-        </div>
-        <div class="name-recent-user bold">
-          <h3>Fabio</h3>
-          <p>Lorem ipsum dolor sit</p>
-        </div>             
-      </div>
-      <div class="user">                  
-        <div class="img-profile round-img">
-            <img src="img/avatar_3.jpg">
-        </div>
-        <div class="name-recent-user bold">
-          <h3>Samuele</h3>
-          <p>Lorem ipsum dolor sit</p>
-        </div>      
-      </div>
-      <div class="user">        
-        <div class="img-profile round-img">
-            <img src="img/avatar_4.jpg">
-        </div>
-        <div class="name-recent-user bold">
-          <h3>Luisa</h3>
-          <p>Lorem ipsum dolor sit</p>
-        </div>      
-      </div>
-    </div>
-  </div>
-  <div class="chat">  
-    <div class="top-user-chat">
-      <div class="img-active">
-          <div class="img-profile round-img">
-              <img src="img/avatar_1.jpg">
+        <!-- SEZIONE CHAT RECENTI -->
+        <div class="recent-chat">           
+          <div class="user" v-for="(contact, index) in contacts" :class="{'user-active': chatActive == index}" @click="chatActive = index">            
+            <div class="img-profile round-img">
+                <img :src="contact.avatar" :alt="contact.name">
+            </div>
+            <div class="name-recent-user bold">
+              <h3><span>{{contact.name}}</span></h3>
+              <p><span>{{contact.messages[contact.messages.length-1].message}}</span></p>
+            </div> 
           </div>
-          <div class="recent-user">
-              <h2>Michele</h2>
-              <p>Ultimo accesso oggi</p>
+        </div>
+      </div>
+      <div class="chat">  
+        <div class="top-user-chat">
+          <div class="img-active">
+              <div class="img-profile round-img">
+                  <img :src="contacts[chatActive].avatar" :alt="contacts.name">
+              </div>
+              <div class="recent-user">
+                  <h2>{{contacts[chatActive].name}}</h2>
+                  <p>Ultimo accesso oggi</p>
+              </div>
+          </div>  
+          <div class="right-icons">
+              <i class="fas fa-search"></i>
+              <i class="fas fa-paperclip"></i>
+              <i class="fas fa-ellipsis-v"></i>
           </div>
-      </div>  
-      <div class="right-icons">
-          <i class="fas fa-search"></i>
-          <i class="fas fa-paperclip"></i>
-          <i class="fas fa-ellipsis-v"></i>
+        </div>
+        <div class="container-chat clearfix">
+          <div v-for="message in contacts[chatActive].messages">
+            <div :class="{'inviato': message.status === 'sent', 'ricevuto': message.status === 'received'}">
+             <p>{{message.message}}</p>
+             <span></span>
+           </div>  
+          </div>
+        </div>
+        <div class="bottom-chat">
+          <i class="far fa-smile"></i>
+          <input id="msg" type="text" placeholder="Scrivi un messaggio">
+          <i class="fas fa-microphone"></i>
+      </div>
       </div>
     </div>
-    <div class="container-chat">
-      <div class="message received">
-        <p>
-          Ciao
-        </p>
-      </div>
-      <div class="message sent">
-        <p>
-          Ehi Ciao
-        </p>
-      </div>
-      <div class="message received">
-        <p>
-          Come stai?
-        </p>
-      </div>
-      <div class="message sent">
-        <p>
-          Tutto bene grazie, tu?
-        </p>
-      </div>
-    </div>
-    <div class="bottom-chat">
-      <i class="far fa-smile"></i>
-      <input id="msg" type="text" placeholder="Scrivi un messaggio">
-      <i class="fas fa-microphone"></i>
+    <!-- FINE CONTAINER APP -->
+      <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+      <script src="js/script.js"></script>
   </div>
-  </div>
-</div>
-<!-- FINE CONTAINER APP -->
-  <script src="js/script.js"></script>
 </body>
 </html>
