@@ -92,10 +92,25 @@ const app = new Vue({
         insertMsg(){       
         const newMessageSent = {
           date : '17/11/21',
-          text : this.newMsg,
+          message : this.newMsg,
           status: 'sent'
         };  
         this.contacts[this.chatActive].messages.push(newMessageSent);
+        
+      const newAnswer = {
+        date: '17/11/21',
+        message: "Ok",
+        status: 'received'
+      };
+
+      this.newMsg = "";
+
+      setTimeout(()=>{
+
+      this.contacts[this.chatActive].messages.push(newAnswer);
+
+      },1000);
+
         }
     }
   });
