@@ -97,6 +97,12 @@ const app = new Vue({
             status: 'sent'
             };  
             this.contacts[this.chatActive].messages.push(newMessageSent);
+
+            const waitMsg = {
+                date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+                message: "sta scrivendo...",
+                status: 'received'
+            };
                 
             const newAnswer = {
                 date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
@@ -108,9 +114,24 @@ const app = new Vue({
 
             setTimeout(()=>{
 
-            this.contacts[this.chatActive].messages.push(newAnswer);
+            this.contacts[this.chatActive].messages.push(waitMsg);
 
             },1000);
+
+            setTimeout(()=>{
+
+            this.contacts[this.chatActive].messages.pop(waitMsg);
+
+            },1999);
+
+            
+            setTimeout(()=>{
+                
+                this.contacts[this.chatActive].messages.push(newAnswer);
+                
+            },2000);
+            
+            
 
         },      
     }
