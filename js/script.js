@@ -85,32 +85,33 @@ const app = new Vue({
         },
       ],
       newMsg : "",
-      chatActive : 0
+      searchContact: "",
+      chatActive : 0,
     },
-  
+
     methods:{
         insertMsg(){       
-        const newMessageSent = {
-          date : '17/11/21',
-          message : this.newMsg,
-          status: 'sent'
-        };  
-        this.contacts[this.chatActive].messages.push(newMessageSent);
-        
-      const newAnswer = {
-        date: '17/11/21',
-        message: "Ok",
-        status: 'received'
-      };
+            const newMessageSent = {
+            date : dayjs().format("DD/MM/YYYY HH:mm:ss"),
+            message : this.newMsg,
+            status: 'sent'
+            };  
+            this.contacts[this.chatActive].messages.push(newMessageSent);
+                
+            const newAnswer = {
+                date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+                message: "Ok",
+                status: 'received'
+            };
 
-      this.newMsg = "";
+            this.newMsg = "";
 
-      setTimeout(()=>{
+            setTimeout(()=>{
 
-      this.contacts[this.chatActive].messages.push(newAnswer);
+            this.contacts[this.chatActive].messages.push(newAnswer);
 
-      },1000);
+            },1000);
 
-        }
+        },      
     }
-  });
+});

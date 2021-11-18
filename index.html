@@ -41,12 +41,12 @@
         </div>
         <!-- SEZIONE BARRA RICERCA CHAT -->
         <div class="search-bar">   
-            <i class="fas fa-search"></i>
-            <input id="search-bar" type="text" placeholder="Cerca o inizia una nuova chat">
+        <i class="fas fa-search"></i>
+        <input v-model="searchContact" id="search-bar" type="text" placeholder="Cerca o inizia una nuova chat">
         </div>
         <!-- SEZIONE CHAT RECENTI -->
         <div class="recent-chat">           
-          <div class="user" v-for="(contact, index) in contacts" :class="{'user-active': chatActive == index}" @click="chatActive = index">            
+          <div class="user" v-for="(contact, index) in contacts" :class="{'user-active': chatActive == index} " @click="chatActive = index" v-if='searchContact === "" || contact.name.toUpperCase().includes(searchContact.toUpperCase())'>            
             <div class="img-profile round-img">
                 <img :src="contact.avatar" :alt="contact.name">
             </div>
@@ -65,7 +65,7 @@
               </div>
               <div class="recent-user">
                   <h2>{{contacts[chatActive].name}}</h2>
-                  <p>Ultimo accesso oggi</p>
+                  <p>{{contacts[chatActive].date}}</p>
               </div>
           </div>  
           <div class="right-icons">
@@ -78,13 +78,13 @@
           <div v-for="message in contacts[chatActive].messages">
             <div :class="{'inviato': message.status === 'sent', 'ricevuto': message.status === 'received'}">
              <p>{{message.message}}</p>
-             <span></span>
+             <span>{{contacts[chatActive].date}}</span>
            </div>  
           </div>
         </div>
         <div class="bottom-chat">
           <i class="far fa-smile"></i>
-          <input id="msg" type="text" placeholder="Scrivi un messaggio" v-model.trim="newMsg"
+          <input id="msg" type="text" placeholder="Scrivi un messaggio" v-model="newMsg"
           @keyup.enter="insertMsg">
           <i class="fas fa-microphone"></i>
       </div>
@@ -93,6 +93,8 @@
     
     <!-- FINE CONTAINER APP -->
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/dayjs.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/plugin/customParseFormat.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   <script src="js/script.js"></script>
 </body>
